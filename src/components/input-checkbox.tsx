@@ -62,7 +62,7 @@ Omit<React.ComponentProps<"input">, "size" | "disabled"> {
 
 export default function InputCheckbox({variant, size, disabled, className,...props}:InputCheckboxProps) {
     return (
-        <label htmlFor="" className={inputCheckboxWrapperVariants({className})}>
+        <label className={inputCheckboxWrapperVariants({className})}>
             <input type="checkbox" className={inputCheckboxVariants({variant, size, disabled})} {...props} />
             <Icon svg={CheckIcon} className={inputCheckboxIconVariants({size})} />
         </label>

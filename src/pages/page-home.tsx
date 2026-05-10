@@ -1,62 +1,29 @@
 
 import Container from "../components/container";
-import PhotoWidget from "../contexts/photos/components/photo-widget";
-import type { Photo } from "../contexts/photos/models/photo";
+import AlbumsFilter from "../contexts/albums/components/albums-filter";
+import useAlbums from "../contexts/albums/hooks/use-albums";
+import PhotoList from "../contexts/photos/components/photo-list";
+import usePhotos from "../contexts/photos/hooks/use-photos";
+
 
 export default function PageHome() {
+
+    const {albums, isLoadingAlbums} = useAlbums();
+    const {photos, isLoadingPhotos} = usePhotos();
+
     return (
         <Container>
-            <div className="grid grid-cols-4 gap-9">
-                <PhotoWidget photo={
-                        {
-                            id: "123",
-                            title: "Ola mundo",
-                            imageId: "portrait-tower.png",
-                            createdAt: new Date(),
-                            albums: [
-                                {
-                                    id: "123",
-                                    title: "Album 1",
-                                    createdAt: new Date(),
-                                },{
-                                    id: "124",
-                                    title: "Album 2",
-                                    createdAt: new Date(),
-                                },{
-                                    id: "125",
-                                    title: "Album 3",
-                                    createdAt: new Date(),
-                                }
-                            ]
-                        }
-                    } 
+            <AlbumsFilter 
+                albums={albums} 
+                loading={isLoadingAlbums}
+                className="mb-26" 
                 />
-                <PhotoWidget photo={
-                        {
-                            id: "124",
-                            title: "Ola mundo",
-                            imageId: "portrait-tower.png",
-                            createdAt: new Date(),
-                            albums: [
-                                {
-                                    id: "123",
-                                    title: "Album 1",
-                                    createdAt: new Date(),
-                                },{
-                                    id: "124",
-                                    title: "Album 2",
-                                    createdAt: new Date(),
-                                },{
-                                    id: "125",
-                                    title: "Album 3",
-                                    createdAt: new Date(),
-                                }
-                            ]
-                        }
-                    } 
-                />
-                <PhotoWidget photo={{} as Photo} loading />
-            </div>
+                
+            <PhotoList 
+                photos={photos}
+                loading={isLoadingPhotos} 
+            />
+
         </Container>
     )
 }

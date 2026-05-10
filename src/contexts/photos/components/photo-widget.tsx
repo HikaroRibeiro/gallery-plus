@@ -17,12 +17,12 @@ export default function PhotoWidget({photo, loading = false}: PhotoWidgetProps) 
             <div className="flex flex-col gap-4">
                 {!loading ? (
                     <ImagePreview 
-                        src={`/images/${photo.imageId}`} 
+                        src={`${import.meta.env.VITE_IMAGES_URL}/${photo.imageId}`} 
                         alt={photo.title} 
                         title={photo.title} 
-                        imageClassName="w-[13.5625rem] h-[13.5625rem] rounded-lg" />
+                        imageClassName="w-[10.875rem] h-[10.875rem] rounded-lg" />
                 ) : (
-                    <Skeleton className="w-[13.5625rem] h-[13.5625rem] rounded-lg"/>
+                    <Skeleton className="w-43.5 h-43.5 rounded-lg"/>
                 )}
 
                 <div className="flex flex-col gap-2">
@@ -33,19 +33,19 @@ export default function PhotoWidget({photo, loading = false}: PhotoWidgetProps) 
                     )}
                 </div>
 
-                <div className="flex gap-1 min-h-[1.375rem]">
+                <div className="flex gap-1 min-h-5.5">
                     {!loading ? (
                         <>
-                            {photo.albums.slice(0, 2).map(album => (
+                            {photo.albums.slice(0, 1).map(album => (
                                 <Badge className="truncate" size="xs" key={album.id}>
                                     {album.title}
                                 </Badge>
                             ))}
-                            {photo.albums.length > 2 && <Badge size="xs">+{photo.albums.length - 2}</Badge>}
+                            {photo.albums.length > 1 && <Badge size="xs">+{photo.albums.length - 2}</Badge>}
 
                         </>
                     ) : (
-                        Array.from({length: 2}).map((_, index) => (
+                        Array.from({length: 1}).map((_, index) => (
                             <Skeleton className="w-full h-4 rounded-sm" key={`album-loading-${index}`}/>
                         ))
                     )}
@@ -54,13 +54,13 @@ export default function PhotoWidget({photo, loading = false}: PhotoWidgetProps) 
             </div>
             {!loading ? (
                 <Link 
-                to={`/photos/${photo.id}`}
+                to={`/fotos/${photo.id}`}
                 className={buttonVariants({
                     variant: "secondary",
                     className: "px-2 py-2"
                 })}>
                     <Text className={buttonTextVariants({variant: "secondary", size: "sm"})}>
-                        Criado em {photo.createdAt.toLocaleDateString()}
+                        Details: {photo.title}
                     </Text>
                 </Link>
             ) : (

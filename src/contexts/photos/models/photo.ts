@@ -5,5 +5,4 @@ export interface Photo {
     title: string;
     imageId: string;
     albums: Album[];
-    createdAt: Date;
 }
