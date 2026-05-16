@@ -41,7 +41,7 @@ export default function PhotoWidget({photo, loading = false}: PhotoWidgetProps) 
                                     {album.title}
                                 </Badge>
                             ))}
-                            {photo.albums.length > 1 && <Badge size="xs">+{photo.albums.length - 2}</Badge>}
+                            {photo.albums.length > 1 && <Badge size="xs">+{photo.albums.length - 1}</Badge>}
 
                         </>
                     ) : (
@@ -60,7 +60,7 @@ export default function PhotoWidget({photo, loading = false}: PhotoWidgetProps) 
                     className: "px-2 py-2"
                 })}>
                     <Text className={buttonTextVariants({variant: "secondary", size: "sm"})}>
-                        Details: {photo.title}
+                        {photo.title}
                     </Text>
                 </Link>
             ) : (
